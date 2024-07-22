@@ -1,0 +1,133 @@
+<div id="container" class="max-w-2xl lg:max-w-4xl px-14 md:px-0 mx-auto py-12">
+  <h1
+    class="text-stone-200 font-medium text-4xl flex items-center justify-center md:justify-start"
+  >
+    todo
+    <span class="text-secondary font-bold">app</span>
+    <ng-icon name="heroCheck" class="text-4xl py-1 text-secondary"></ng-icon>
+  </h1>
+
+  <div class="flex gap-8 pt-12">
+    <!--Side bar(proyects and filters)-->
+    <div
+      class="flex flex-col gap-y-10 min-h-[420px] bg-primary p-5 rounded-2xl md:w-[320px] shadow-lg"
+    >
+      <div class="flex flex-col">
+        <h3
+          class="flex w-full justify-between text-lg pb-4 font-semibold text-secondary"
+        >
+          Proyects
+          <button>
+            <ng-icon
+              name="heroPlus"
+              class="text-2xl py-1 text-textC hover:text-textCHover"
+            ></ng-icon>
+          </button>
+        </h3>
+
+        <ul class="list-none flex flex-col gap-2">
+          <li
+            class="flex items-center text-textC gap-2 px-2 py-2 rounded-xl bg-cards hover:text-textCHover cursor-pointer"
+          >
+            <ng-icon name="heroFolder" class="text-xl text-textC"></ng-icon>
+            <span class="text-sm">General</span>
+          </li>
+          <li
+            class="flex items-center text-textC gap-2 px-2 py-2 rounded-xl hover:bg-cards hover:text-textCHover cursor-pointer"
+          >
+            <ng-icon name="heroFolder" class="text-xl text-textC"></ng-icon>
+            <span class="text-sm">Trabajo</span>
+          </li>
+          <li
+            class="flex items-center text-textC gap-2 px-2 py-2 rounded-xl hover:bg-cards hover:text-textCHover cursor-pointer"
+          >
+            <ng-icon
+              name="heroFolder"
+              class="text-xl text-textC hover:text-textCHover"
+            ></ng-icon>
+            <span class="text-sm">Estudio</span>
+          </li>
+        </ul>
+      </div>
+      <div class="flex flex-col">
+        <h3
+          class="flex w-full justify-between text-lg pb-4 font-semibold text-secondary"
+        >
+          Filters
+
+          <ng-icon name="heroFunnel" class="text-2xl pt-1 text-textC"></ng-icon>
+        </h3>
+        <ul class="list-none flex flex-col gap-2">
+          <li
+            class="flex items-center text-textC gap-2 px-2 py-2 rounded-xl bg-cards hover:text-textCHover cursor-pointer"
+          >
+            <ng-icon name="heroInbox" class="text-xl text-textC"></ng-icon>
+            <span class="text-sm">All</span>
+          </li>
+          <li
+            class="flex items-center text-textC gap-2 px-2 py-2 rounded-xl hover:bg-cards hover:text-textCHover cursor-pointer"
+          >
+            <ng-icon name="heroStar" class="text-xl text-textC"></ng-icon>
+            <span class="text-sm">Started</span>
+          </li>
+          <li
+            class="flex items-center text-textC gap-2 px-2 py-2 rounded-xl hover:bg-cards hover:text-textCHover cursor-pointer"
+          >
+            <ng-icon
+              name="heroCalendarDays"
+              class="text-xl text-textC hover:text-textCHover"
+            ></ng-icon>
+            <span class="text-sm">Today</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!--Tasks list-->
+    <div
+      class="flex flex-col justify-between min-h-[420px] bg-primary pt-5 pb-8 px-7 rounded-2xl w-full shadow-lg"
+    >
+      <h3 class="text-lg pb-4 font-semibold text-secondary">Tasks</h3>
+
+      <ul class="list-none flex flex-col gap-2 h-full pb-3">
+        <li
+          class="flex items-center justify-between text-textC gap-2 px-3 py-2 rounded-xl bg-cards hover:text-textCHover cursor-pointer"
+        >
+          <div class="flex items-center">
+            <label
+              class="relative flex items-center p-1 rounded-full cursor-pointer"
+              htmlFor="purple"
+            >
+              <input
+                type="checkbox"
+                class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-purple-500 checked:bg-purple-500 checked:before:bg-purple-500 hover:before:opacity-10"
+                id="purple"
+                checked
+              />
+              <span
+                class="absolute text-white transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100"
+              >
+                <ng-icon name="heroCheck" class="pt-0.5 w-3.5 h-3.5"></ng-icon>
+              </span>
+            </label>
+            <span class="ml-0.5 text-textC">Sacar a mis perros</span>
+          </div>
+
+          <div class="flex items-center gap-1">
+            <ng-icon
+              name="heroEllipsisHorizontal"
+              class="text-xl text-textC"
+            ></ng-icon>
+            <ng-icon name="heroTrash" class="text-xl text-textC"></ng-icon>
+          </div>
+        </li>
+      </ul>
+
+      <button
+        class="self-end max-w-[120px] px-6 py-1 text-base text-textCHover rounded-2xl bg-secondary"
+      >
+        Add Task
+      </button>
+    </div>
+  </div>
+</div>
