@@ -21,31 +21,22 @@
             <ng-icon
               name="heroPlus"
               class="text-2xl py-1 text-textC hover:text-textCHover"
+              (click)="this.addProyect()"
             ></ng-icon>
           </button>
         </h3>
 
         <ul class="list-none flex flex-col gap-2">
           <li
-            class="flex items-center text-textC gap-2 px-2 py-2 rounded-xl bg-cards hover:text-textCHover cursor-pointer"
+            *ngFor="let p of proyects"
+            class="flex items-center text-textC gap-2 px-2 py-2 rounded-xl hover:bg-cards cursor-pointer"
+            [ngClass]="{
+              'bg-cards': this.idSelectedProyect == p.idProyect
+            }"
+            (click)="changeProyect(p.idProyect)"
           >
-            <ng-icon name="heroFolder" class="text-xl text-textC"></ng-icon>
-            <span class="text-sm">General</span>
-          </li>
-          <li
-            class="flex items-center text-textC gap-2 px-2 py-2 rounded-xl hover:bg-cards hover:text-textCHover cursor-pointer"
-          >
-            <ng-icon name="heroFolder" class="text-xl text-textC"></ng-icon>
-            <span class="text-sm">Trabajo</span>
-          </li>
-          <li
-            class="flex items-center text-textC gap-2 px-2 py-2 rounded-xl hover:bg-cards hover:text-textCHover cursor-pointer"
-          >
-            <ng-icon
-              name="heroFolder"
-              class="text-xl text-textC hover:text-textCHover"
-            ></ng-icon>
-            <span class="text-sm">Estudio</span>
+            <ng-icon [name]="p.iconName? p.iconName : 'heroFolder'" class="text-xl" [ngClass]="[p.color? 'text-'+p.color: 'text-textC']"></ng-icon>
+            <span class="text-sm" [ngClass]="'text-'+p.color">{{ p.name }}</span>
           </li>
         </ul>
       </div>
@@ -85,49 +76,24 @@
 
     <!--Tasks list-->
     <div
-      class="flex flex-col justify-between min-h-[420px] bg-primary pt-5 pb-8 px-7 rounded-2xl w-full shadow-lg"
+      class="flex flex-col justify-between min-h-[420px] bg-primary pt-5 pb-4 px-7 rounded-2xl w-full shadow-lg"
     >
       <h3 class="text-lg pb-4 font-semibold text-secondary">Tasks</h3>
 
-      <ul class="list-none flex flex-col gap-2 h-full pb-3">
-        <li
-          class="flex items-center justify-between text-textC gap-2 px-3 py-2 rounded-xl bg-cards hover:text-textCHover cursor-pointer"
-        >
-          <div class="flex items-center">
-            <label
-              class="relative flex items-center p-1 rounded-full cursor-pointer"
-              htmlFor="purple"
-            >
-              <input
-                type="checkbox"
-                class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-purple-500 checked:bg-purple-500 checked:before:bg-purple-500 hover:before:opacity-10"
-                id="purple"
-                checked
-              />
-              <span
-                class="absolute text-white transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100"
-              >
-                <ng-icon name="heroCheck" class="pt-0.5 w-3.5 h-3.5"></ng-icon>
-              </span>
-            </label>
-            <span class="ml-0.5 text-textC">Sacar a mis perros</span>
-          </div>
-
-          <div class="flex items-center gap-1">
-            <ng-icon
-              name="heroEllipsisHorizontal"
-              class="text-xl text-textC"
-            ></ng-icon>
-            <ng-icon name="heroTrash" class="text-xl text-textC"></ng-icon>
-          </div>
-        </li>
-      </ul>
-
-      <button
-        class="self-end max-w-[120px] px-6 py-1 text-base text-textCHover rounded-2xl bg-secondary"
-      >
-        Add Task
-      </button>
+      <proyect-list *ngIf="findProyect() != undefined" [proyect]="findProyect()" class="h-full"></proyect-list>
     </div>
   </div>
 </div>
+<app-add-proyect *ngIf="this.viewMode != 'none'" [submitNewProyect]="submitNewProyect" [changeViewMode]="changeViewMode"></app-add-proyect>
+<ngx-ui-loader
+  bgsColor="#3d0976"
+  fgsColor="#724af3"
+  bgSize="540"
+  blur="5"
+  text="Cargando proyectos"
+  textPosition="center-center"
+  bgsPosition="center-center"
+  bgsType="wandering-cubes"
+  fgsType="three-strings"
+>
+</ngx-ui-loader>

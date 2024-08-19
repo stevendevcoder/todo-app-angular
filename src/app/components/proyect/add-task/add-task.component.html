@@ -1,0 +1,48 @@
+<div
+  class="flex items-center justify-between text-textC gap-2 px-3 py-3 rounded-xl bg-cards hover:text-textCHover"
+>
+  <form action="" class="w-full">
+    <div class="form-group flex flex-col items-center gap-2">
+      <input
+        type="text"
+        [(ngModel)]="task.title"
+        class="form-control w-full outline-none bg-primary rounded-md py-2 px-3"
+        placeholder="Titulo tarea"
+        name="title"
+        [value]="this.task.title"
+        [autofocus]="true"
+      />
+      <textarea
+        type="textarea"
+        [(ngModel)]="task.description"
+        class="form-control w-full outline-none min-h-10 bg-primary rounded-md py-2 px-3"
+        placeholder="Descripcion..."
+        [value]="this.task.description"
+        [ngModelOptions]="{ standalone: true }"
+      ></textarea>
+    </div>
+
+    <div class="flex justify-center items-center gap-3 pt-4">
+      <button
+        *ngIf="this.submitType === 'add'"
+        (click)="onSubmit()"
+        class="max-w-[120px] px-6 py-1 text-base text-textCHover rounded-2xl bg-green-600 hover:bg-green-900"
+      >
+        Guardar
+      </button>
+      <button
+        *ngIf="this.submitType === 'edit'"
+        (click)="onSubmit()"
+        class="max-w-[120px] px-6 py-1 text-base text-textCHover rounded-2xl bg-yellow-500 hover:bg-yellow-700"
+      >
+        Editar
+      </button>
+      <button
+        class="max-w-[120px] px-6 py-1 text-base text-textCHover rounded-2xl bg-red-500 hover:bg-red-900"
+        (click)="this.changeViewMode('list edit')"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

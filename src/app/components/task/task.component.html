@@ -1,1 +1,41 @@
-<p>task works!</p>
+<div
+  class="flex items-center justify-between text-textC gap-2 px-3 py-3 rounded-xl bg-cards hover:text-textCHover cursor-pointer"
+>
+  <div class="flex items-center">
+    <label
+      class="relative flex items-center p-1 rounded-full cursor-pointer"
+      htmlFor="purple"
+    >
+      <input
+        type="checkbox"
+        class="before:content[''] peer relative h-5 w-5 cursor-pointer appearance-none rounded-md border border-blue-gray-200 transition-all before:absolute before:top-2/4 before:left-2/4 before:block before:h-12 before:w-12 before:-translate-y-2/4 before:-translate-x-2/4 before:rounded-full before:bg-blue-gray-500 before:opacity-0 before:transition-opacity checked:border-purple-500 checked:bg-purple-500 checked:before:bg-purple-500 hover:before:opacity-10"
+        id="purple"
+        [checked]="taskView.done"
+        (change)="checkTask()"
+      />
+      <span
+        class="absolute text-white transition-opacity opacity-0 pointer-events-none top-2/4 left-2/4 -translate-y-2/4 -translate-x-2/4 peer-checked:opacity-100"
+      >
+        <ng-icon name="heroCheck" class="pt-0.5 w-3.5 h-3.5"></ng-icon>
+      </span>
+    </label>
+    <span
+      class="ml-0.5 text-textC"
+      [className]="taskView.done ? 'line-through' : ''"
+      >{{ taskView.title }}</span
+    >
+  </div>
+
+  <div class="flex items-center gap-1">
+    <ng-icon
+      name="heroEllipsisHorizontal"
+      class="text-2xl text-textC hover:text-secondary"
+      (click)="this.editTask(taskView)"
+    ></ng-icon>
+    <ng-icon
+      name="heroTrash"
+      class="text-xl text-textC hover:text-red-700"
+      (click)="this.deleteTask(taskView.idTask)"
+    ></ng-icon>
+  </div>
+</div>

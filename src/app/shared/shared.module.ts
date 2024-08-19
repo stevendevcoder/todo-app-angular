@@ -12,11 +12,20 @@ import {
   heroInbox,
   heroStar,
   heroCalendarDays,
+  heroAcademicCap,
+  heroChartPie,
+  heroCircleStack,
+  heroHome,
+  heroBriefcase,
+  heroCodeBracket,
+  heroLockClosed,
+  heroXMark,
 } from '@ng-icons/heroicons/outline';
 
 @NgModule({
   declarations: [],
   imports: [
+
     CommonModule,
     MatIconModule,
     NgIconsModule.withIcons({
@@ -28,7 +37,15 @@ import {
       heroTrash,
       heroInbox,
       heroStar,
-      heroCalendarDays,
+      heroCalendarDays, 
+      /*ICONOS DE PROYECTOS*/
+      heroAcademicCap, 
+      heroChartPie,
+      heroCircleStack,
+      heroHome,
+      heroBriefcase,
+      heroCodeBracket,
+      heroXMark
     }),
   ],
   exports: [

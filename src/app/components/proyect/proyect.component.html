@@ -1,1 +1,54 @@
-<p>proyect works!</p>
+
+<div id="container" class="h-full flex flex-col relative">
+<ul *ngIf="proyect.tasksList.length > 0 || this.viewMode == 'add'" id="ul" class="list-none flex flex-col gap-2 pb-3 overflow-auto">
+  <li>
+    <app-add-task
+      *ngIf="viewMode == 'add'"
+      [changeViewMode]="changeViewMode"
+      [addTask]="addTask"
+      [submitType]="'add'"
+    ></app-add-task>
+  </li>
+  <li
+    *ngIf="proyect.tasksList.length != 0"
+    id="tasks-list"
+    class="flex flex-col gap-3"
+    cdkDropList
+    (cdkDropListDropped)="drop($event)"
+  >
+    @if (proyect.tasksList.length != 0) { @for (task of proyect.tasksList; track
+    task) {
+    <task
+      *ngIf="this.taskToEdit.idTask != task.idTask"
+      [task]="task"
+      [deleteTask]="deleteTask"
+      [editTask]="editTask"
+      [doneTask]="doneTask"
+      id="task"
+      cdkDrag
+    ></task>
+    <app-add-task
+      *ngIf="this.taskToEdit.idTask == task.idTask"
+      [changeViewMode]="changeViewMode"
+      [submitType]="'edit'"
+      [addTask]="addTask"
+      [taskToEdit]="taskToEdit"
+      [proyectId]="this.proyect.idProyect"
+    ></app-add-task>
+    } } 
+
+    
+  </li>
+</ul>
+
+  <div *ngIf="proyect.tasksList.length == 0 && viewMode == 'list'" class="empty-state flex-grow flex justify-center items-center">
+    <p class="text-textC font-light">Agrega tareas a este proyecto! &#x2615;</p>
+  </div>
+  <button
+    class="absolute bottom-3 right-3 max-w-[120px] px-7 py-1 text-base text-textCHover rounded-2xl bg-secondary"
+    (click)="changeViewMode('add')"
+  >
+    Add Task
+  </button>
+
+</div>

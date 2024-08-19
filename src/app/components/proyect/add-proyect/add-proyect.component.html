@@ -1,0 +1,94 @@
+
+<div (click)="closeOnClickOutside($event)" class="fixed inset-0 bg-black bg-opacity-5 backdrop-blur-sm flex justify-center items-center ">
+  <form #myForm="ngForm" action="" class="relative px-20 py-6 bg-cards rounded-lg min-w-[600px]" (click)="$event.stopPropagation()">
+    <h3 class="text-textCHover font-medium text-xl pb-4 text-center">Nuevo proyecto</h3>
+    <div class="form-group flex flex-col items-center gap-2 w-full">
+      <input
+        type="text"
+        [(ngModel)]="this.newProyect.name"
+        class="form-control w-full outline-none text-textCHover bg-primary rounded-md py-2 px-3"
+        placeholder="Nombre del proyecto"
+        name="title"
+        [value]=""
+        [autofocus]="true"
+      />
+      <textarea
+        type="textarea"
+        name="description"
+        [(ngModel)]="this.newProyect.description"
+        class="form-control w-full outline-none text-textCHover min-h-10 bg-primary rounded-md py-2 px-3"
+        placeholder="Descripción..."
+        [value]=""
+      ></textarea>
+    </div>
+
+    <div class="form-group mt-3 flex gap-4">
+      <ng-select 
+        [items]="options" 
+        class="w-full form-control bg-primary text-textC py-2 px-3 rounded-md" 
+        bindLabel="label" 
+        bindValue="value"
+        placeholder="Icono del proyecto" 
+        [(ngModel)]="newProyect.iconName"
+        [ngModelOptions]="{standalone: true}"
+      >
+        <ng-template ng-option-tmp let-item="item">
+          <div class="option-container flex items-center justify-center gap-2 bg-primary">
+            <ng-icon [name]="item.icon" class="text-textCHover text-2xl text-center"></ng-icon>
+          </div>
+        </ng-template>
+      </ng-select>
+
+      <ng-select 
+        [items]="colors" 
+        class="w-full form-control bg-primary text-textC py-2 px-3 rounded-md" 
+        bindLabel="label" 
+        bindValue="value" 
+        placeholder="Colors del proyect" 
+        [(ngModel)]="newProyect.color"
+        [ngModelOptions]="{standalone: true}"
+      >
+        <ng-template ng-option-tmp let-item="item">
+          <div class="option-container flex items-center justify-center gap-2 bg-primary">
+            <span class="" [ngClass]="['text-'+item.value]">{{item.label}}</span>
+          </div>
+        </ng-template>
+      </ng-select>
+    </div>
+
+    <!--Proyect preview-->
+    <div class="proyect-preview w-full flex justify-center items-center mt-4">
+      <div 
+        class="preview-card border shadow-md shadow-white/15 flex items-center gap-2 px-6 py-3 rounded-lg bg-cards"
+        [ngClass]="[getClassName('border',newProyect.color), getClassName('shadow', newProyect.color)]"
+        >
+        <ng-icon [name]="this.newProyect.iconName" class="text-lg" [ngClass]="getClassName('text',newProyect.color)"></ng-icon>
+        <span class="text-lg" [ngClass]="getClassName('text',newProyect.color)">{{ this.newProyect.name == undefined || this.newProyect.name == '' ? 'Proyecto nuevo' : this.newProyect.name }}</span>
+      </div>
+    </div>
+    
+    <div class="mt-5 flex justify-center items-center gap-3 pt-4">
+      <button
+        *ngIf="this.proyectToEdit == undefined"
+        (click)="onSubmit()"
+        class="max-w-[240px] px-6 py-1 text-base text-textCHover rounded-2xl bg-green-600 hover:bg-green-900"
+      >
+        Guardar
+      </button>
+      <button
+        *ngIf="this.proyectToEdit != undefined"
+        (click)="onSubmit()"
+        class="max-w-[240px] px-6 py-1 text-base text-textCHover rounded-2xl bg-yellow-500 hover:bg-yellow-700"
+      >
+        Editar
+      </button>
+      <button
+        class="max-w-[240px] px-6 py-1 text-base text-textCHover rounded-2xl bg-red-500 hover:bg-red-900"
+        (click)="this.changeViewMode('none')"
+      >
+        Cancelar
+      </button>
+    </div>
+    <ng-icon (click)="this.changeViewMode('none')" class="absolute right-5 top-5 text-2xl text-textC cursor-pointer" name="heroXMark"></ng-icon>
+  </form>
+</div>
